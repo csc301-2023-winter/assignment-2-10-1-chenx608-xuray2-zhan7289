@@ -11,7 +11,7 @@ function search_results () {
         button.classList.add("goback-button");
 
         var link = document.createElement("a");
-        link.href = "homepage.html"; // Replace with your URL
+        link.href = "index.html"; // Replace with your URL
         link.appendChild(button);
 
         resultsDiv.appendChild(link);
