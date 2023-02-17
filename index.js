@@ -1,4 +1,6 @@
 
+const { tag } = require("postcss-selector-parser");
+
 
 function updateFilterBox(filterId) {
   var filterDropdown = document.getElementById(filterId);
@@ -79,6 +81,41 @@ function search() {
     var query = "?searchResults=" + encodeURIComponent(resultsDiv.innerHTML);
     window.location.href = "resultspage.html" + query;
   }
+  } else {
+    var notice = document.createElement("p");
+    notice.innerHTML = "Please enter a search term.";
+  }
+}
+
+
+function search_tag(event) {
+  const searchTerm = event.target.textContent;
+  var elements = document.querySelectorAll("#projects *:not(h2):not(script):not(style):not(title)");
+  var matches = [];
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+    if (element.innerHTML.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+      matches.push(element.outerHTML);
+    }
+  }
+  
+  // Display the matching results
+  var resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+  if (matches.length === 0) {
+    
+    resultsDiv.innerHTML = "No matches found.";
+
+    var query = "?searchResults=" + encodeURIComponent(resultsDiv.innerHTML);
+
+    window.location.href = "resultspage.html" + query;
+
+  } else {
+    for (var i = 0; i < matches.length; i++) {
+      resultsDiv.innerHTML += matches[i];
+    }
+    var query = "?searchResults=" + encodeURIComponent(resultsDiv.innerHTML);
+    window.location.href = "resultspage.html" + query;
   }
 }
 
