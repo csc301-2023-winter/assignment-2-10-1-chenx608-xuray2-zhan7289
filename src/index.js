@@ -116,7 +116,7 @@ function search_tag(event) {
 
 function emptySearch() {
   var error = document.querySelector('#empty');
-  error.style.height = '30px';
+  // error.style.height = '30px';
   let timeoutId = null;
   error.classList.add('show');
   if (timeoutId) {
